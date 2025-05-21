@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OTP Verification - GadgetHub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      margin: 80px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    input[type="submit"] {
+      background-color: #000;
+      color: #fff;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #333;
+    }
+
+    .resend {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .resend a {
+      color: #ff4500;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+    <script>
+        let data = "{{msg}}"
+        if (data == "invalid"){
+            alert("Enter correct pin")
+        }
+    </script>
+
+  <div class="container">
+    <div class="logo">GadgetHub</div>
+    <h2>OTP Verification</h2>
+    <p>Enter the 6-digit code sent to your mobile/email.</p>
+    <form action="/register3" method="post">
+      <input type="hidden" name="fullname" value="{{fullname}}">
+      <input type="hidden" name="email" value="{{email}}">
+      <input type="hidden" name="mobile" value="{{mobile}}">
+      <input type="hidden" name="password" value="{{password}}">
+      <input type="hidden" name="otp" value="{{otp}}">
+      <input type="text" name="cotp" maxlength="4" placeholder="Enter OTP" required>
+      <input type="submit" value="Verify">
+    </form>
+    <div class="resend">
+      Didn't receive the code? <a href="#">Resend OTP</a>
+    </div>
+  </div>
+
+</body>
+</html>

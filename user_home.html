@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GadgetHub | Products</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #222;
+      color: #fff;
+      padding: 20px 0 10px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 5px 0;
+      font-size: 36px;
+    }
+
+    nav {
+      background-color: #111;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff9800;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    .product {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .product:hover {
+      transform: scale(1.02);
+    }
+
+    .product img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      background-color: #f9f9f9;
+    }
+
+    .product-details {
+      padding: 15px;
+    }
+
+    .product-details h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .product-details p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #009688;
+      margin-bottom: 15px;
+    }
+
+    form {
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      background-color: #555;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #333;
+    }
+
+    .btn.cart {
+      background-color: #ff9800;
+    }
+
+    .btn.cart:hover {
+      background-color: #e68a00;
+    }
+
+    .btn.buy {
+      background-color: #009688;
+    }
+
+    .btn.buy:hover {
+      background-color: #00796b;
+    }
+
+    @media (max-width: 1000px) {
+      .product-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .product-container {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    var data = "{{msg}}";
+    if (data == "p1") {
+      alert("New product added");
+    }
+    else if (data == "p2") {
+      alert("The quantity updated");
+    }
+    else if (data == "noproductsincart") {
+      alert("Cart is empty!");
+    }
+  </script>
+
+  <header>
+    <h1>GadgetHub - Products</h1>
+    <h1>Welcome, {{fullname}}</h1>
+  </header>
+
+  <nav>
+    <a href="/home">Home</a>
+    <a href="/user_home2">Products</a>
+    <a href="/shoppingcart/{{fullname}}">Cart</a>
+    <a href="/home">Logout</a>
+  </nav>
+
+  <section class="product-container">
+
+    <!-- Product 1 -->
+    <div class="product">
+      <img src="{{url_for('static', filename='images/image1.png')}}" alt="Smartphone" />
+      <div class="product-details">
+        <h3>Galaxy Z Pro Max</h3>
+        <p>Latest foldable smartphone with AMOLED display and 5G.</p>
+        <div class="price">₹89,999</div>
+        <form action="/addtocart1" method="POST">
+          <input type="hidden" name="fullname" value="{{fullname}}">
+          <input type="hidden" name="productid" value="1001">
+          <input type="hidden" name="productname" value="Galaxy Z Pro Max">
+          <input type="hidden" name="productprice" value="89999">
+          <button type="submit" class="btn cart">Add to Cart</button>
+        </form>
+        
+        <button onclick="pay('{{fullname}}',1001,89999)" class="btn buy">Buy Now</button>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product">
+      <img src="{{url_for('static', filename='images/image2.png')}}" alt="Smartwatch" />
+      <div class="product-details">
+        <h3>FitTime Elite</h3>
+        <p>Smartwatch with fitness tracking and 10-day battery life.</p>
+        <div class="price">₹5,499</div>
+        <form action="/addtocart1" method="POST">
+          <input type="hidden" name="fullname" value="{{fullname}}">
+          <input type="hidden" name="productid" value="1002">
+          <input type="hidden" name="productname" value="FitTime Elite">
+          <input type="hidden" name="productprice" value="5499">
+          <button type="submit" class="btn cart">Add to Cart</button>
+        </form>
+        <button onclick="pay('{{fullname}}',1002,5499)" class="btn buy">Buy Now</button>
+
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product">
+      <img src="{{url_for('static', filename='images/image3.png')}}" alt="Headphones" />
+      <div class="product-details">
+        <h3>NoiseBlaster X5</h3>
+        <p>Wireless headphones with noise cancellation and deep bass.</p>
+        <div class="price">₹3,999</div>
+        <form action="/addtocart1" method="POST">
+          <input type="hidden" name="fullname" value="{{fullname}}">
+          <input type="hidden" name="productid" value="1003">
+          <input type="hidden" name="productname" value="NoiseBlaster X5">
+          <input type="hidden" name="productprice" value="3999">
+          <button type="submit" class="btn cart">Add to Cart</button>
+        </form>
+        <button onclick="pay('{{fullname}}',1003,3999)" class="btn buy">Buy Now</button>
+
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product">
+      <img src="{{url_for('static', filename='images/image4.png')}}" alt="Laptop" />
+      <div class="product-details">
+        <h3>ProBook X360</h3>
+        <p>High-performance laptop with Intel i7 and 16GB RAM.</p>
+        <div class="price">₹74,999</div>
+        <form action="/addtocart1" method="POST">
+          <input type="hidden" name="fullname" value="{{fullname}}">
+          <input type="hidden" name="productid" value="1004">
+          <input type="hidden" name="productname" value="ProBook X360">
+          <input type="hidden" name="productprice" value="74999">
+          <button type="submit" class="btn cart">Add to Cart</button>
+        </form>
+        <button onclick="pay('{{fullname}}',1004,74999)" class="btn buy">Buy Now</button>
+
+      </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product">
+      <img src="{{url_for('static', filename='images/image5.png')}}" alt="Camera" />
+      <div class="product-details">
+        <h3>Canon Alpha Lens</h3>
+        <p>Mirrorless DSLR camera with 24MP and 4K video recording.</p>
+        <div class="price">₹59,499</div>
+        <form action="/addtocart1" method="POST">
+          <input type="hidden" name="fullname" value="{{fullname}}">
+          <input type="hidden" name="productid" value="1005">
+          <input type="hidden" name="productname" value="Canon Alpha Lens">
+          <input type="hidden" name="productprice" value="59499">
+          <button type="submit" class="btn cart">Add to Cart</button>
+        </form>
+        <button onclick="pay('{{fullname}}',1005,59499)" class="btn buy">Buy Now</button>
+
+      </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="product">
+      <img src="{{url_for('static', filename='images/image6.png')}}" alt="Tablet" />
+      <div class="product-details">
+        <h3>Tab Ultra 10</h3>
+        <p>10-inch tablet with 2K display and 8,000mAh battery.</p>
+        <div class="price">₹22,999</div>
+        <form action="/addtocart1" method="POST">
+          <input type="hidden" name="fullname" value="{{fullname}}">
+          <input type="hidden" name="productid" value="1006">
+          <input type="hidden" name="productname" value="Tab Ultra 10">
+          <input type="hidden" name="productprice" value="22999">
+          <button type="submit" class="btn cart">Add to Cart</button>
+        </form>
+        <button onclick="pay('{{fullname}}',1006,22999)" class="btn buy">Buy Now</button>
+
+      </div>
+    </div>
+
+  </section>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>function pay(fullname, productid, price) {
+  var amount = price;
+  var options = {
+    key: "rzp_test_M5u0kQH2sHMF9L",
+    amount: parseInt(amount) * 100,
+    currency: "INR",
+    name: "E Commerce",
+    description: "Basic E commerce application",
+    image: "{{ url_for('static', filename='images/logo.png') }}",
+    handler: function (response) {
+      alert("Payment Success!");
+      var form = document.createElement("form");
+      form.method = "POST";
+      form.action = "/success";
+      form.innerHTML = `
+        <input type="hidden" name="fullname" value="${fullname}">
+        <input type="hidden" name="productid" value="${productid}">
+      `;
+      document.body.appendChild(form);
+      form.submit();
+    },
+    prefill: {
+      contact: "+91 9347900493"
+    },
+    theme: {
+      color: "grey"
+    }
+  };
+
+  var rzp = new Razorpay(options);
+
+  rzp.on('payment.failed', function (response) {
+    alert("Payment Failed!");
+    var form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/failure";
+    form.innerHTML = `
+      <input type="hidden" name="fullname" value="${fullname}">
+      <input type="hidden" name="productid" value="${productid}">
+    `;
+    document.body.appendChild(form);
+    form.submit();
+  });
+
+  rzp.open(); // <- This is what triggers the Razorpay popup
+}
+</script>
+
+</body>
+</html>

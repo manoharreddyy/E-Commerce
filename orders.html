@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GadgetHub | Cart</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #222;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .cart-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    table th, table td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #009688;
+      color: #fff;
+    }
+
+    table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .btn.remove {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .btn.remove:hover {
+      background-color: #d32f2f;
+    }
+
+    .btn.checkout {
+      background-color: #4CAF50;
+      color: white;
+      float: right;
+    }
+
+    .btn.checkout:hover {
+      background-color: #388e3c;
+    }
+
+    .total-section {
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      table th, table td {
+        font-size: 12px;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Your Orders</h1>
+  </header>
+
+  <div class="cart-container">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product_Id</th>
+          <th>Product_Name</th>
+          <th>Price (₹)</th>
+          <th>Quantity</th>
+          <th>Order Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in data %}
+        <tr>
+          <td>{{ item[3]}}</td>
+          <td>{{ item[4]}}</td>
+          <td>{{ item[5]}}</td>
+          <td>{{ item[6]}}</td>
+          <td>{{ item[1]}}</td>
+          <td>
+            <div>
+              <a href="/deleteproduct/{{item[3]}}/{{fullname}}"><button type="submit" class="btn remove">Remove</button></a>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>    
+
+  </div>
+
+</body>
+</html>
+

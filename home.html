@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GadgetHub - Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    header {
+      background-color: #000;
+      color: #fff;
+      padding: 1rem 0;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    .nav ul li {
+      margin-left: 20px;
+    }
+
+    .nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background-color: #222;
+      color: #fff;
+      padding: 100px 0;
+      text-align: center;
+      background-image: url('https://via.placeholder.com/1200x400?text=Top+Gadgets+Banner');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero .btn {
+      background-color: #ff4500;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      margin-top: 15px;
+      display: inline-block;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .products {
+      padding: 50px 0;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .products h3 {
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .product-grid {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .product-card {
+      background-color: #fafafa;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-card h4 {
+      margin: 10px 0;
+    }
+
+    .product-card p {
+      font-weight: bold;
+      color: #333;
+    }
+
+    .product-card .btn {
+      margin-top: 10px;
+      background-color: #000;
+      color: #fff;
+      padding: 8px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    footer {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="container nav">
+      <h1 class="logo">GadgetHub</h1>
+      <nav>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="/login1">Login</a></li>
+          <li><a href="/register1">Register</a></li>
+          <li><a href="/shoppingcart/{{fullname}}">Cart 🛒</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h2>Top Gadgets of 2025</h2>
+      <p>Explore the latest smartphones, laptops, and accessories.</p>
+      <a href="#" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="products">
+    <div class="container">
+      <h3>Featured Products</h3>
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="{{url_for('static',filename='images/Smartphone.png')}}" alt="Smartphone">
+          <h4>Smartphone X25</h4>
+          <p>$699</p>
+          <a href="#" class="btn" onclick="openalert()">Buy Now</a>
+        </div>
+        <div class="product-card">
+          <img src="{{url_for('static',filename='images/ultrabook.png')}}" alt="Laptop">
+          <h4>UltraBook Pro</h4>
+          <p>$1099</p>
+          <a href="#" class="btn" onclick="openalert()">Buy Now</a>
+        </div>
+        <div class="product-card">
+          <img src="{{url_for('static',filename='images/Smartwatch.png')}}" alt="Smartwatch">
+          <h4>SmartWatch 8</h4>
+          <p>$199</p>
+          <a href="#" class="btn" onclick="openalert()">Buy Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 GadgetHub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function openalert(){
+        alert("Signup / Login !")
+    }
+
+
+  </script>
+</body>
+</html>
